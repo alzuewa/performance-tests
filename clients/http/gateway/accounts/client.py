@@ -46,7 +46,7 @@ class AccountsGatewayHTTPClient(HTTPClient):
 
     def get_accounts_api(self, query: GetAccountsQueryDict) -> Response:
         """
-        Performs GET-request to get user accounts list.
+        Gets user accounts list.
         :param query: Dict with request params.
         :return: Response object with response data.
         """
@@ -54,7 +54,7 @@ class AccountsGatewayHTTPClient(HTTPClient):
 
     def open_deposit_account_api(self, request: OpenDepositAccountRequestDict) -> Response:
         """
-        Performs POST-request to open a deposit account.
+        Opens a deposit account.
         :param request: Dict with userId.
         :return: Response object with response data.
         """
@@ -62,7 +62,7 @@ class AccountsGatewayHTTPClient(HTTPClient):
 
     def open_savings_account_api(self, request: OpenSavingsAccountRequestDict) -> Response:
         """
-        Performs POST-request to open a savings account.
+        Opens a savings account.
         :param request: Dict with userId.
         :return: Response object with response data.
         """
@@ -70,7 +70,7 @@ class AccountsGatewayHTTPClient(HTTPClient):
 
     def open_debit_card_account_api(self, request: OpenDebitCardAccountRequestDict) -> Response:
         """
-        Performs POST-request to open a debit account.
+        Opens a debit account.
         :param request: Dict with userId.
         :return: Response object with response data.
         """
@@ -78,7 +78,7 @@ class AccountsGatewayHTTPClient(HTTPClient):
 
     def open_credit_card_account_api(self, request: OpenCreditCardAccountRequestDict) -> Response:
         """
-        Performs POST-request to open a credit account.
+        Opens a credit account.
         :param request: Dict with userId.
         :return: Response object with response data.
         """

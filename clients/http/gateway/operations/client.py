@@ -3,6 +3,7 @@ from typing import TypedDict
 from httpx import QueryParams, Response
 
 from clients.http.client import HTTPClient
+from clients.http.gateway.client import build_gateway_http_client
 
 
 class GetOperationsQueryDict(TypedDict):
@@ -121,3 +122,11 @@ class OperationsGatewayHTTPClient(HTTPClient):
         :return: Response object with response data.
         """
         return self.post('/api/v1/operations/make-cash-withdrawal-operation', json=request)
+
+
+def build_documents_gateway_http_client() -> OperationsGatewayHTTPClient:
+    """
+    Creates OperationsGatewayHTTPClient instance.
+    :return: ready-to-use OperationsGatewayHTTPClient.
+    """
+    return OperationsGatewayHTTPClient(client = build_gateway_http_client())

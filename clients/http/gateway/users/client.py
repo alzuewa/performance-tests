@@ -3,6 +3,7 @@ from typing import TypedDict
 from httpx import Response
 
 from clients.http.client import HTTPClient
+from clients.http.gateway.client import build_gateway_http_client
 
 
 class CreateUserRequestDict(TypedDict):
@@ -38,3 +39,11 @@ class UsersGatewayHTTPClient(HTTPClient):
         :return: Response object with response data.
         """
         return self.post('/api/v1/users', json=request)
+
+
+def build_users_gateway_http_client() -> UsersGatewayHTTPClient:
+    """
+    Creates UsersGatewayHTTPClient instance.
+    :return: ready-to-use UsersGatewayHTTPClient.
+    """
+    return UsersGatewayHTTPClient(client = build_gateway_http_client())

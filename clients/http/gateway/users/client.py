@@ -34,7 +34,7 @@ class UsersGatewayHttpClient(HTTPClient):
         """
         Creates a new user.
 
-        :param request: Dict with a new user data
+        :param request: Dict with a new user data.
         :return: Response object with response data.
         """
         return self.post('/api/v1/users', json=request)

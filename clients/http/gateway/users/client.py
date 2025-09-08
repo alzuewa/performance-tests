@@ -16,7 +16,7 @@ class CreateUserRequestDict(TypedDict):
     phoneNumber: str
 
 
-class UsersGatewayHttpClient(HTTPClient):
+class UsersGatewayHTTPClient(HTTPClient):
     """
     Client to interact with http-gateway /api/v1/users service.
     """

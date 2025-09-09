@@ -18,12 +18,12 @@ print(f'Open credit card account response: {open_debit_card_account_response}')
 
 # Get tariff document
 get_tariff_docs_response = documents_gateway_client.get_tariff_document(
-    account_id=open_debit_card_account_response['account']['id']
+    account_id=open_debit_card_account_response.account.id
 )
 print(f'Get tariff document response: {get_tariff_docs_response}')
 
 # Get contract document
 get_contract_docs_response = documents_gateway_client.get_contract_document(
-    account_id=open_debit_card_account_response['account']['id']
+    account_id=open_debit_card_account_response.account.id
 )
 print(f'Get contract document response: {get_contract_docs_response}')

@@ -19,7 +19,7 @@ print(f'Open debit card account response: {open_debit_card_account_response}')
 
 # Make top up operation
 create_top_up_operation_response = operations_gateway_client.make_top_up_operation(
-    card_id=open_debit_card_account_response['account']['cards'][0]['id'],
-    account_id=open_debit_card_account_response['account']['id']
+    card_id=open_debit_card_account_response.account.cards[0].id,
+    account_id=open_debit_card_account_response.account.id
 )
 print(f'Make top up operation response: {create_top_up_operation_response}')

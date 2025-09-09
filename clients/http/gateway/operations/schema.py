@@ -1,6 +1,5 @@
 from enum import StrEnum
 
-from httpx import URL
 from pydantic import BaseModel, Field, ConfigDict, HttpUrl
 
 

@@ -24,7 +24,8 @@ class CreateUserRequestSchema(BaseModel):
     """
     Data structure to create a new user.
     """
-    # populate_by_name=True is needed when we create JSON from a model to send it to the server
+    # populate_by_name=True allows us **to pass** params to the model in snake_case when we create it
+    # to dump it properly and send to the server in expected format, use model_dump(by_alias=True)
     model_config = ConfigDict(populate_by_name=True)
 
     # alias from `Field` will be applied to data which is incoming from some source to validate it against Pydantic model

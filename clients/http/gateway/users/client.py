@@ -25,7 +25,7 @@ class UsersGatewayHTTPClient(HTTPClient):
         """
         Creates a new user.
 
-        :param request: Dict with a new user data.
+        :param request: Pydantic-model with a new user data.
         :return: Response object with response data.
         """
         return self.post('/api/v1/users', json=request.model_dump(by_alias=True))

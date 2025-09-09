@@ -7,10 +7,10 @@ class UserSchema(BaseModel):
     """
     id: str
     email: EmailStr
-    last_name: str = Field(alias="lastName")  
-    first_name: str = Field(alias="firstName")  
-    middle_name: str = Field(alias="middleName")  
-    phone_number: str = Field(alias="phoneNumber")  
+    last_name: str = Field(alias='lastName')  
+    first_name: str = Field(alias='firstName')  
+    middle_name: str = Field(alias='middleName')  
+    phone_number: str = Field(alias='phoneNumber')  
 
 
 class GetUserResponseSchema(BaseModel):
@@ -29,10 +29,10 @@ class CreateUserRequestSchema(BaseModel):
 
     # alias from `Field` will be applied to data which is incoming from some source to validate it against Pydantic model
     email: EmailStr
-    last_name: str = Field(alias="lastName")  
-    first_name: str = Field(alias="firstName")  
-    middle_name: str = Field(alias="middleName")  
-    phone_number: str = Field(alias="phoneNumber")  
+    last_name: str = Field(alias='lastName')  
+    first_name: str = Field(alias='firstName')  
+    middle_name: str = Field(alias='middleName')  
+    phone_number: str = Field(alias='phoneNumber')  
 
 
 class CreateUserResponseSchema(BaseModel):

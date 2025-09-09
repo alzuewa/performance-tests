@@ -5,8 +5,6 @@ from pydantic.alias_generators import to_camel
 
 
 class UserSchema(BaseModel):
-    model_config = ConfigDict(alias_generator=to_camel, populate_by_name=True)
-
     id: str = Field(default_factory=lambda: str(uuid4()))
     email: EmailStr
     last_name: str
@@ -16,6 +14,8 @@ class UserSchema(BaseModel):
 
 
 class CreateUserRequestSchema(BaseModel):
+    model_config = ConfigDict(alias_generator=to_camel, populate_by_name=True)
+
     email: EmailStr = Field(default='user@example.com')
     last_name: str = Field(default='Smith')
     first_name: str = Field(default='Tom')

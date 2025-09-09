@@ -13,7 +13,7 @@ print(f'Create user response: {create_user_response}')
 
 # Open debit account
 open_debit_card_account_response = accounts_gateway_client.open_debit_card_account(
-    user_id=create_user_response['user']['id']
+    user_id=create_user_response.user.id
 )
 print(f'Open debit card account response: {open_debit_card_account_response}')
 

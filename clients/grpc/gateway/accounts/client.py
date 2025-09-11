@@ -102,6 +102,6 @@ def build_accounts_gateway_grpc_client() -> AccountsGatewayGRPCClient:
     """
     A factory method to get an instance of AccountsGatewayGRPCClient.
 
-    :return: :return: Initialized client for AccountsGatewayGRPCClient.
+    :return: Initialized client for AccountsGatewayGRPCClient.
     """
     return AccountsGatewayGRPCClient(channel=build_gateway_grpc_client())

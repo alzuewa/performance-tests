@@ -1,5 +1,4 @@
 from locust import HttpUser, between, task
-from psutil import users
 
 from tools.fakers import fake
 

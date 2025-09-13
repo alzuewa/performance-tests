@@ -1,7 +1,8 @@
 from grpc import Channel
+from locust.env import Environment
 
 from clients.grpc.client import GRPCClient
-from clients.grpc.gateway.client import build_gateway_grpc_client
+from clients.grpc.gateway.client import build_gateway_grpc_client, build_gateway_locust_grpc_client
 from contracts.services.gateway.operations.operations_gateway_service_pb2_grpc import OperationsGatewayServiceStub
 from contracts.services.gateway.operations.rpc_get_operation_pb2 import GetOperationRequest, GetOperationResponse
 from contracts.services.gateway.operations.rpc_get_operations_pb2 import GetOperationsRequest, GetOperationsResponse
@@ -230,3 +231,15 @@ def build_operations_gateway_grpc_client() -> OperationsGatewayGRPCClient:
     :return: Initialized client for OperationsGatewayService.
     """
     return OperationsGatewayGRPCClient(channel=build_gateway_grpc_client())
+
+def build_operations_gateway_locust_grpc_client(environment: Environment) -> OperationsGatewayGRPCClient:
+    """
+    Function to get an instance of OperationsGatewayGRPCClient adapted for Locust.
+
+    Client automatically collects metrics and passes it to Locust by the means of hooks.
+    Is used exceptionally for load testing.
+
+    :param environment: Locust environment object.
+    :return: ready-to-use OperationsGatewayGRPCClient with hooks to collect metrics.
+    """
+    return OperationsGatewayGRPCClient(channel=build_gateway_locust_grpc_client(environment))

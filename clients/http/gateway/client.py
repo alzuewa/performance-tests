@@ -28,7 +28,7 @@ def build_gateway_locust_http_client(environment: Environment) -> Client:
     """
 
     # Supress INFO-logs from httpx
-    # Reduces excessive console output
+    # Reduce excessive console output
     logging.getLogger('httpx').setLevel(logging.WARNING)
 
     return Client(

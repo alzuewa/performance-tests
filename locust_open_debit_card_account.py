@@ -3,7 +3,6 @@ from locust import User, between, task
 from clients.http.gateway.accounts.client import AccountsGatewayHTTPClient, build_accounts_gateway_locust_http_client
 from clients.http.gateway.users.client import build_users_gateway_locust_http_client, UsersGatewayHTTPClient
 from clients.http.gateway.users.schema import CreateUserResponseSchema
-from tools.fakers import fake
 
 
 class OpenDebitCardAccountScenarioUser(User):
@@ -13,8 +12,6 @@ class OpenDebitCardAccountScenarioUser(User):
     users_gateway_client: UsersGatewayHTTPClient
     accounts_gateway_client: AccountsGatewayHTTPClient
     create_user_response: CreateUserResponseSchema
-
-    user_data: dict
 
     def on_start(self) -> None:
         self.users_gateway_client = build_users_gateway_locust_http_client(environment=self.environment)

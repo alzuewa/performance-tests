@@ -1,7 +1,8 @@
 from grpc import Channel
+from locust.env import Environment
 
 from clients.grpc.client import GRPCClient
-from clients.grpc.gateway.client import build_gateway_grpc_client
+from clients.grpc.gateway.client import build_gateway_grpc_client, build_gateway_locust_grpc_client
 from contracts.services.gateway.users.rpc_create_user_pb2 import CreateUserRequest, CreateUserResponse
 from contracts.services.gateway.users.rpc_get_user_pb2 import GetUserRequest, GetUserResponse
 from contracts.services.gateway.users.users_gateway_service_pb2_grpc import UsersGatewayServiceStub
@@ -69,3 +70,15 @@ def build_users_gateway_grpc_client() -> UsersGatewayGRPCClient:
     :return: Initialized client for UsersGatewayService.
     """
     return UsersGatewayGRPCClient(channel=build_gateway_grpc_client())
+
+def build_users_gateway_locust_grpc_client(environment: Environment) -> UsersGatewayGRPCClient:
+    """
+    Function to get an instance of UsersGatewayGRPCClient adapted for Locust.
+
+    Client automatically collects metrics and passes it to Locust by the means of hooks.
+    Is used exceptionally for load testing.
+
+    :param environment: Locust environment object.
+    :return: ready-to-use UsersGatewayHTTPClient with hooks to collect metrics.
+    """
+    return UsersGatewayGRPCClient(channel=build_gateway_locust_grpc_client(environment))

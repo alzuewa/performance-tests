@@ -3,6 +3,7 @@ import time
 from httpx import HTTPError, HTTPStatusError, Request, Response
 from locust.env import Environment
 
+
 def locust_request_event_hook(request: Request) -> None:
     """
     httpx event hook; is invoked before sending a request.
@@ -24,7 +25,7 @@ def locust_response_event_hook(environment: Environment):
     :return: Hook function for httpx response event hook.
     """
     def inner(response: Response) -> None:
-        exception = None
+        exception: HTTPError | HTTPStatusError | None = None
         try:
             response = response.raise_for_status()
         except (HTTPError, HTTPStatusError) as error:

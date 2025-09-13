@@ -1,5 +1,3 @@
-from http.client import responses
-
 import grpc
 
 from contracts.services.gateway.users.rpc_get_user_pb2 import GetUserRequest

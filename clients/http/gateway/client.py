@@ -26,6 +26,9 @@ def build_gateway_locust_http_client(environment: Environment) -> Client:
     :param environment: Locust environment object through which the metrics are sent.
     :return: httpx.Client with hooks plugged in specifically for load testing.
     """
+
+    # Supress INFO-logs from httpx
+    # Reduces excessive console output
     logging.getLogger('httpx').setLevel(logging.WARNING)
 
     return Client(

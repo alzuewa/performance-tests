@@ -6,7 +6,6 @@ from clients.http.gateway.users.schema import CreateUserResponseSchema
 
 
 class GetAccountsTaskSet(TaskSet):
-
     create_user_response: CreateUserResponseSchema | None = None
     users_gateway_client: UsersGatewayHTTPClient
     accounts_gateway_client: AccountsGatewayHTTPClient

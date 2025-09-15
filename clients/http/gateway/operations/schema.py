@@ -20,8 +20,8 @@ class OperationStatus(StrEnum):
     COMPLETED = 'COMPLETED'
     IN_PROGRESS = 'IN_PROGRESS'
     UNSPECIFIED = 'UNSPECIFIED'
-    
-    
+
+
 class OperationSchema(BaseModel):
     """
     Operation data structure.
@@ -121,10 +121,12 @@ class MakeFeeOperationRequestSchema(MakeOperationRequestSchema):
     Data structure to make account fee operations.
     """
 
+
 class MakeTopUpOperationRequestSchema(MakeOperationRequestSchema):
     """
     Data structure to make account top up operations.
     """
+
 
 class MakeBillPaymentOperationRequestSchema(MakeOperationRequestSchema):
     """
@@ -136,6 +138,7 @@ class MakeCashWithdrawalOperationRequestSchema(MakeOperationRequestSchema):
     """
     Data structure to make account cash withdrawal operations.
     """
+
 
 class MakeCashbackOperationRequestSchema(MakeOperationRequestSchema):
     """

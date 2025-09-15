@@ -1,8 +1,9 @@
-from locust import User, between, task
+from locust import task
 
-from clients.http.gateway.locust import GatewayHTTPSequentialTaskSet
 from clients.http.gateway.accounts.schema import OpenSavingsAccountResponseSchema
+from clients.http.gateway.locust import GatewayHTTPSequentialTaskSet
 from clients.http.gateway.users.schema import CreateUserResponseSchema
+from tools.locust.user import LocustBaseUser
 
 
 class GetDocumentsSequentialTaskSet(GatewayHTTPSequentialTaskSet):
@@ -53,12 +54,11 @@ class GetDocumentsSequentialTaskSet(GatewayHTTPSequentialTaskSet):
             account_id=self.open_savings_account_response.account.id
         )
 
-class GetDocumentsUser(User):
+
+class GetDocumentsScenarioUser(LocustBaseUser):
     """
-    Locust User instance executing a scenario of getting documents by sequentially ordered steps.
+    Locust User instance executing a scenario of getting documents by sequential steps.
     """
-    host = 'localhost'
     tasks = [GetDocumentsSequentialTaskSet]
-    wait_time = between(1, 3)
 
 # locust --config=./scenarios/http/gateway/get_documents/v1.0.conf

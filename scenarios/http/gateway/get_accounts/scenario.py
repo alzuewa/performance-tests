@@ -1,8 +1,9 @@
-from locust import TaskSet, User, between, task
+from locust import TaskSet, task
 
 from clients.http.gateway.accounts.client import AccountsGatewayHTTPClient, build_accounts_gateway_locust_http_client
 from clients.http.gateway.users.client import UsersGatewayHTTPClient, build_users_gateway_locust_http_client
 from clients.http.gateway.users.schema import CreateUserResponseSchema
+from tools.locust.user import LocustBaseUser
 
 
 class GetAccountsTaskSet(TaskSet):
@@ -33,7 +34,5 @@ class GetAccountsTaskSet(TaskSet):
         self.accounts_gateway_client.get_accounts(user_id=self.create_user_response.user.id)
 
 
-class GetAccountsUser(User):
-    host = 'localhost'
+class GetAccountsScenarioUser(LocustBaseUser):
     tasks = [GetAccountsTaskSet]
-    wait_time = between(1, 3)

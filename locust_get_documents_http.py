@@ -1,7 +1,7 @@
 from locust import User, between, task
 
-from clients.http.gateway.locust import GatewayHTTPSequentialTaskSet
 from clients.http.gateway.accounts.schema import OpenSavingsAccountResponseSchema
+from clients.http.gateway.locust import GatewayHTTPSequentialTaskSet
 from clients.http.gateway.users.schema import CreateUserResponseSchema
 
 
@@ -55,6 +55,7 @@ class GetDocumentsSequentialTaskSet(GatewayHTTPSequentialTaskSet):
         self.documents_gateway_client.get_contract_document(
             account_id=self.open_savings_account_response.account.id
         )
+
 
 class GetDocumentsUser(User):
     """

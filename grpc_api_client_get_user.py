@@ -1,6 +1,5 @@
 from clients.grpc.gateway.users.client import build_users_gateway_grpc_client
 
-
 users_gateway_client = build_users_gateway_grpc_client()
 
 create_user_response_data = users_gateway_client.create_user()

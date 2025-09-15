@@ -2,7 +2,6 @@ from httpx import QueryParams, Response
 from locust.env import Environment
 
 from clients.http.client import HTTPClient, HTTPClientExtensions
-from clients.http.gateway.client import build_gateway_http_client, build_gateway_locust_http_client
 from clients.http.gateway.accounts.schema import (
     GetAccountsQuerySchema,
     GetAccountsResponseSchema,
@@ -15,6 +14,7 @@ from clients.http.gateway.accounts.schema import (
     OpenCreditCardAccountRequestSchema,
     OpenCreditCardAccountResponseSchema
 )
+from clients.http.gateway.client import build_gateway_http_client, build_gateway_locust_http_client
 
 
 class AccountsGatewayHTTPClient(HTTPClient):
@@ -97,7 +97,8 @@ def build_accounts_gateway_http_client() -> AccountsGatewayHTTPClient:
     Creates AccountsGatewayHTTPClient instance.
     :return: ready-to-use AccountsGatewayHTTPClient.
     """
-    return AccountsGatewayHTTPClient(client = build_gateway_http_client())
+    return AccountsGatewayHTTPClient(client=build_gateway_http_client())
+
 
 def build_accounts_gateway_locust_http_client(environment: Environment) -> AccountsGatewayHTTPClient:
     """
@@ -109,4 +110,4 @@ def build_accounts_gateway_locust_http_client(environment: Environment) -> Accou
     :param environment: Locust environment object.
     :return: ready-to-use AccountsGatewayHTTPClient with hooks to collect metrics.
     """
-    return AccountsGatewayHTTPClient(client = build_gateway_locust_http_client(environment))
+    return AccountsGatewayHTTPClient(client=build_gateway_locust_http_client(environment))

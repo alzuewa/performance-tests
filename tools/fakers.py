@@ -1,8 +1,8 @@
 import time
 
-from google.protobuf.internal.enum_type_wrapper import EnumTypeWrapper
 from faker import Faker
 from faker.providers.python import TEnum
+from google.protobuf.internal.enum_type_wrapper import EnumTypeWrapper
 
 
 class Fake:

@@ -51,7 +51,7 @@ class LocustInterceptor(UnaryUnaryClientInterceptor):
             response=response,
             exception=exception,
             response_length=response_length,
-         )
+        )
 
         # Return request result as a future-object
         return response

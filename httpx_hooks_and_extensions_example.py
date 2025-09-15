@@ -7,9 +7,11 @@ def log_request_hook(request: Request):
     request.extensions['start_time'] = datetime.now()
     print(f'REQUEST: {request.method}')
 
+
 def log_response_hook(response: Response):
     duration = datetime.now() - response.request.extensions['start_time']
     print(f'RESPONSE: {response.status_code}, {duration}')
+
 
 client = Client(
     base_url='http://localhost:8003',

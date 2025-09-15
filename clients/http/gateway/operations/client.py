@@ -4,7 +4,7 @@ from locust.env import Environment
 from clients.http.client import HTTPClient, HTTPClientExtensions
 from clients.http.gateway.client import build_gateway_http_client, build_gateway_locust_http_client
 from clients.http.gateway.operations.schema import (
-    GetOperationsQuerySchema, 
+    GetOperationsQuerySchema,
     GetOperationReceiptResponseSchema,
     GetOperationResponseSchema,
     GetOperationsResponseSchema,
@@ -187,7 +187,8 @@ def build_operations_gateway_http_client() -> OperationsGatewayHTTPClient:
     Creates OperationsGatewayHTTPClient instance.
     :return: ready-to-use OperationsGatewayHTTPClient.
     """
-    return OperationsGatewayHTTPClient(client = build_gateway_http_client())
+    return OperationsGatewayHTTPClient(client=build_gateway_http_client())
+
 
 def build_operations_gateway_locust_http_client(environment: Environment) -> OperationsGatewayHTTPClient:
     """
@@ -199,4 +200,4 @@ def build_operations_gateway_locust_http_client(environment: Environment) -> Ope
     :param environment: Locust environment object.
     :return: ready-to-use OperationsGatewayHTTPClient with hooks to collect metrics.
     """
-    return OperationsGatewayHTTPClient(client = build_gateway_locust_http_client(environment))
+    return OperationsGatewayHTTPClient(client=build_gateway_locust_http_client(environment))

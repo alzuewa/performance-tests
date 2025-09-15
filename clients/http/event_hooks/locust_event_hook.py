@@ -13,6 +13,7 @@ def locust_request_event_hook(request: Request) -> None:
     """
     request.extensions['start_time'] = time.perf_counter()
 
+
 def locust_response_event_hook(environment: Environment):
     """
     Returns a httpx event hook which is invoked after getting a response.
@@ -24,6 +25,7 @@ def locust_response_event_hook(environment: Environment):
     :param environment: Locust environment object through which the metrics are sent.
     :return: Hook function for httpx response event hook.
     """
+
     def inner(response: Response) -> None:
         exception: HTTPError | HTTPStatusError | None = None
         try:
@@ -44,6 +46,7 @@ def locust_response_event_hook(environment: Environment):
             response=response,
             exception=exception,
             request_type='HTTP',
-            response_length =response_length,
+            response_length=response_length,
         )
+
     return inner

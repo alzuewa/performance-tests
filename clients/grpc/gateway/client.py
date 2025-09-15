@@ -13,6 +13,7 @@ def build_gateway_grpc_client() -> Channel:
     # Create unsafe (non-TLS) connection with gRPC-server on localhost:9003
     return insecure_channel('localhost:9003')
 
+
 def build_gateway_locust_grpc_client(environment: Environment) -> Channel:
     """
     Factory function(builder) to create a gRPC-channel specifically adapted for Locust.

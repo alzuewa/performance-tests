@@ -43,12 +43,14 @@ class DocumentsGatewayHTTPClient(HTTPClient):
         response = self.get_contract_document_api(account_id)
         return GetContractDocResponseSchema.model_validate_json(response.text)
 
+
 def build_documents_gateway_http_client() -> DocumentsGatewayHTTPClient:
     """
     Creates DocumentsGatewayHTTPClient instance.
     :return: ready-to-use DocumentsGatewayHTTPClient.
     """
-    return DocumentsGatewayHTTPClient(client = build_gateway_http_client())
+    return DocumentsGatewayHTTPClient(client=build_gateway_http_client())
+
 
 def build_documents_gateway_locust_http_client(environment: Environment) -> DocumentsGatewayHTTPClient:
     """
@@ -60,4 +62,4 @@ def build_documents_gateway_locust_http_client(environment: Environment) -> Docu
     :param environment: Locust environment object.
     :return: ready-to-use DocumentsGatewayHTTPClient with hooks to collect metrics.
     """
-    return DocumentsGatewayHTTPClient(client = build_gateway_locust_http_client(environment))
+    return DocumentsGatewayHTTPClient(client=build_gateway_locust_http_client(environment))

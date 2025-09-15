@@ -1,4 +1,5 @@
 import logging
+
 from httpx import Client
 from locust.env import Environment
 
@@ -11,6 +12,7 @@ def build_gateway_http_client() -> Client:
     :return: ready-to-use httpx.Client object instance.
     """
     return Client(base_url='http://localhost:8003', timeout=100)
+
 
 def build_gateway_locust_http_client(environment: Environment) -> Client:
     """

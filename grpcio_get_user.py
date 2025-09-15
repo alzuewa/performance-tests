@@ -3,7 +3,6 @@ import grpc
 from contracts.services.gateway.users.rpc_create_user_pb2 import CreateUserRequest, CreateUserResponse
 from contracts.services.gateway.users.rpc_get_user_pb2 import GetUserRequest, GetUserResponse
 from contracts.services.gateway.users.users_gateway_service_pb2_grpc import UsersGatewayServiceStub
-
 from tools.fakers import fake
 
 # Устанавливаем соединение с gRPC-сервером по адресу localhost:9003

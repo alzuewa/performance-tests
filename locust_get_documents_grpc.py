@@ -56,6 +56,7 @@ class GetDocumentsSequentialTaskSet(GatewayGRPCSequentialTaskSet):
             account_id=self.open_savings_account_response.account.id
         )
 
+
 class GetDocumentsUser(User):
     """
     Locust User instance executing a scenario of getting documents by sequentially ordered steps.

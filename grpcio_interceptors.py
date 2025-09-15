@@ -13,6 +13,7 @@ class SimpleLoggingInterceptor(grpc.UnaryUnaryClientInterceptor):
 
         return response
 
+
 channel = grpc.insecure_channel('localhost:9003')
 channel_with_interceptor = grpc.intercept_channel(channel, SimpleLoggingInterceptor())
 

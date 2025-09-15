@@ -71,6 +71,7 @@ def build_users_gateway_grpc_client() -> UsersGatewayGRPCClient:
     """
     return UsersGatewayGRPCClient(channel=build_gateway_grpc_client())
 
+
 def build_users_gateway_locust_grpc_client(environment: Environment) -> UsersGatewayGRPCClient:
     """
     Function to get an instance of UsersGatewayGRPCClient adapted for Locust.

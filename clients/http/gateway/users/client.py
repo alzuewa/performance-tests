@@ -41,12 +41,14 @@ class UsersGatewayHTTPClient(HTTPClient):
         response = self.create_user_api(request)
         return CreateUserResponseSchema.model_validate_json(response.text)
 
+
 def build_users_gateway_http_client() -> UsersGatewayHTTPClient:
     """
     Creates UsersGatewayHTTPClient instance.
     :return: ready-to-use UsersGatewayHTTPClient.
     """
-    return UsersGatewayHTTPClient(client = build_gateway_http_client())
+    return UsersGatewayHTTPClient(client=build_gateway_http_client())
+
 
 def build_users_gateway_locust_http_client(environment: Environment) -> UsersGatewayHTTPClient:
     """
@@ -58,4 +60,4 @@ def build_users_gateway_locust_http_client(environment: Environment) -> UsersGat
     :param environment: Locust environment object.
     :return: ready-to-use UsersGatewayHTTPClient with hooks to collect metrics.
     """
-    return UsersGatewayHTTPClient(client = build_gateway_locust_http_client(environment))
+    return UsersGatewayHTTPClient(client=build_gateway_locust_http_client(environment))

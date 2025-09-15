@@ -4,7 +4,6 @@ from clients.grpc.gateway.locust import GatewayGRPCTaskSet
 
 
 class GetAccountsTaskSet(GatewayGRPCTaskSet):
-
     user_id: str | None = None
 
     @task(2)

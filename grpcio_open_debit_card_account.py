@@ -1,13 +1,12 @@
 import grpc
 
+from contracts.services.gateway.accounts.accounts_gateway_service_pb2_grpc import AccountsGatewayServiceStub
 from contracts.services.gateway.accounts.rpc_open_debit_card_account_pb2 import (
     OpenDebitCardAccountRequest,
     OpenDebitCardAccountResponse
 )
-from contracts.services.gateway.accounts.accounts_gateway_service_pb2_grpc import AccountsGatewayServiceStub
 from contracts.services.gateway.users.rpc_create_user_pb2 import CreateUserRequest, CreateUserResponse
 from contracts.services.gateway.users.users_gateway_service_pb2_grpc import UsersGatewayServiceStub
-
 from tools.fakers import fake
 
 # Create a connection with a gRPC-server on localhost:9003

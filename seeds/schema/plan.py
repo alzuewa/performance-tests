@@ -65,16 +65,25 @@ class SeedsPlan(BaseModel):
     users: SeedUsersPlan = Field(default_factory=SeedUsersPlan)
 
 
-# Usage example:
-# plan = SeedsPlan(
-#     users=SeedUsersPlan(
-#         count=1000,
-#         debit_card_accounts=SeedAccountsPlan(
-#             count=3,
-#             physical_cards=SeedCardsPlan(count=3),
-#             top_up_operations=SeedOperationsPlan(count=10)
-#         )
+# Usage example (separate module):
+#
+# from seeds.builder import build_grpc_seeds_builder
+# from seeds.dumps import save_seeds_result, load_seeds_result
+# from seeds.schema.plan import SeedsPlan, SeedUsersPlan, SeedCardsPlan, SeedAccountsPlan
+#
+# builder = build_grpc_seeds_builder()
+# result = builder.build(
+#     SeedsPlan(
+#         users=SeedUsersPlan(
+#             count=500,
+#             credit_card_accounts=SeedAccountsPlan(
+#                 count=1,
+#                 physical_cards=SeedCardsPlan(count=1)
+#             )
+#         ),
 #     )
 # )
+# save_seeds_result(result=result, scenario="test-scenario")
+# print(load_seeds_result(scenario="test-scenario"))
 #
 # print(plan.model_dump_json(indent=2, exclude_defaults=True))

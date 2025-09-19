@@ -1,5 +1,5 @@
 from seeds.scenario import SeedsScenario
-from seeds.schema.plan import SeedsPlan, SeedUsersPlan, SeedCardsPlan, SeedAccountsPlan, SeedOperationsPlan
+from seeds.schema.plan import SeedsPlan, SeedUsersPlan, SeedAccountsPlan, SeedOperationsPlan
 
 
 class ExistingUserGetOperationsSeedsScenario(SeedsScenario):
@@ -11,7 +11,7 @@ class ExistingUserGetOperationsSeedsScenario(SeedsScenario):
     @property
     def plan(self) -> SeedsPlan:
         """
-        Seeding plan describing how many users need to create and what data to generate for them.
+        Seeding plan describing how many users to create and what data to generate for them.
         This plan creates 300 users with a credit account and operations.
         """
         return SeedsPlan(

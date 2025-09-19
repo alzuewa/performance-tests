@@ -1,23 +1,23 @@
 from locust import task
 
-from clients.http.gateway.accounts.schema import OpenSavingsAccountResponseSchema
-from clients.http.gateway.locust import GatewayHTTPSequentialTaskSet
-from clients.http.gateway.users.schema import CreateUserResponseSchema
+from clients.grpc.gateway.locust import GatewayGRPCSequentialTaskSet
+from contracts.services.gateway.accounts.rpc_open_savings_account_pb2 import OpenSavingsAccountResponse
+from contracts.services.gateway.users.rpc_create_user_pb2 import CreateUserResponse
 from tools.locust.user import LocustBaseUser
 
 
-class GetDocumentsSequentialTaskSet(GatewayHTTPSequentialTaskSet):
+class GetDocumentsSequentialTaskSet(GatewayGRPCSequentialTaskSet):
     """
     Load test scenario which sequentially does the following:
     1. Creates a new user.
     2. Opens a savings account.
     3. Get account documents (tariff and contract).
 
-    Uses base GatewayHTTPSequentialTaskSet and API-clients created there.
+    Uses base GatewayGRPCSequentialTaskSet and API-clients created there.
     """
 
-    create_user_response: CreateUserResponseSchema | None = None
-    open_savings_account_response: OpenSavingsAccountResponseSchema | None = None
+    create_user_response: CreateUserResponse | None = None
+    open_savings_account_response: OpenSavingsAccountResponse | None = None
 
     @task
     def create_user(self):
@@ -57,8 +57,8 @@ class GetDocumentsSequentialTaskSet(GatewayHTTPSequentialTaskSet):
 
 class GetDocumentsScenarioUser(LocustBaseUser):
     """
-    Locust User instance executing a scenario of getting documents by sequential steps.
+    Locust User instance executing a scenario of getting documents by sequentially ordered steps.
     """
     tasks = [GetDocumentsSequentialTaskSet]
 
-# locust --config=./scenarios/http/gateway/get_documents/v1.0.conf
+# locust --config=./scenarios/grpc/gateway/new_user_get_documents/v1.0.conf

@@ -11,7 +11,7 @@ class ExistingUserIssueVirtualCardSeedsScenario(SeedsScenario):
     @property
     def plan(self) -> SeedsPlan:
         """
-        Seeding plan describing how many users need to create and what data to generate for them.
+        Seeding plan describing how many users to create and what data to generate for them.
         This plan creates 300 users with a debit account.
         """
         return SeedsPlan(

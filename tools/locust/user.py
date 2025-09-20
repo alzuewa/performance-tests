@@ -4,7 +4,7 @@ from locust import User, between
 class LocustBaseUser(User):
     """
     Base virtual Locust User inherited by all the load tests scenarios.
-    Holds common settings which can be overrided if necessary.
+    Holds common settings which can be overridden if necessary.
     """
     host: str = 'localhost'  # Fiction host to conform to Locust API
     abstract = True  # Flags that the class shouldn't be used directly

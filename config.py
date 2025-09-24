@@ -12,7 +12,7 @@ class Settings(BaseSettings):
         extra='allow',  # Allow extra fields (for instance, unused variables)
         env_file='.env',  # The name of the main .env file
         env_file_encoding='utf-8',
-        env_nested_delimiter="."  # Allows to use nested variables, for instance: LOCUST_USER.WAIT_TIME_MIN
+        env_nested_delimiter='.'  # Allows to use nested variables, for instance: LOCUST_USER.WAIT_TIME_MIN
     )
 
     # Nested settings sections

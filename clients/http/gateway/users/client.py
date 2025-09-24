@@ -4,6 +4,7 @@ from locust.env import Environment
 from clients.http.client import HTTPClient, HTTPClientExtensions
 from clients.http.gateway.client import build_gateway_http_client, build_gateway_locust_http_client
 from clients.http.gateway.users.schema import CreateUserRequestSchema, CreateUserResponseSchema, GetUserResponseSchema
+from tools.routes import APIRoutes
 
 
 class UsersGatewayHTTPClient(HTTPClient):
@@ -19,8 +20,8 @@ class UsersGatewayHTTPClient(HTTPClient):
        :return: Response object with response data.
        """
         return self.get(
-            f'/api/v1/users/{user_id}',
-            extensions=HTTPClientExtensions(route='/api/v1/users/{user_id}')
+            f'{APIRoutes.USERS}/{user_id}',
+            extensions=HTTPClientExtensions(route=f'{APIRoutes.USERS}/{{user_id}}')
         )
 
     def create_user_api(self, request: CreateUserRequestSchema) -> Response:
@@ -30,7 +31,7 @@ class UsersGatewayHTTPClient(HTTPClient):
         :param request: Pydantic-model with a new user data.
         :return: Response object with response data.
         """
-        return self.post('/api/v1/users', json=request.model_dump(by_alias=True))
+        return self.post(APIRoutes.USERS, json=request.model_dump(by_alias=True))
 
     def get_user(self, user_id: str) -> GetUserResponseSchema:
         response = self.get_user_api(user_id)

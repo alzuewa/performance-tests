@@ -1,5 +1,6 @@
-from config import settings
 from locust import User, between
+
+from config import settings
 
 
 class LocustBaseUser(User):

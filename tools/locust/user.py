@@ -1,3 +1,4 @@
+from config import settings
 from locust import User, between
 
 
@@ -8,4 +9,7 @@ class LocustBaseUser(User):
     """
     host: str = 'localhost'  # Fiction host to conform to Locust API
     abstract = True  # Flags that the class shouldn't be used directly
-    wait_time = between(1, 3)
+    wait_time = between(
+        min_wait=settings.locust_user.wait_time_min,
+        max_wait=settings.locust_user.wait_time_max
+    )

@@ -4,6 +4,7 @@ from httpx import Client
 from locust.env import Environment
 
 from clients.http.event_hooks.locust_event_hook import locust_request_event_hook, locust_response_event_hook
+from config import settings
 
 
 def build_gateway_http_client() -> Client:
@@ -11,7 +12,10 @@ def build_gateway_http_client() -> Client:
     Creates httpx.Client instance with basic setup for http-gateway service.
     :return: ready-to-use httpx.Client object instance.
     """
-    return Client(base_url='http://localhost:8003', timeout=100)
+    return Client(
+        base_url=settings.gateway_http_client.client_url,
+        timeout=settings.gateway_http_client.timeout
+    )
 
 
 def build_gateway_locust_http_client(environment: Environment) -> Client:
@@ -34,8 +38,8 @@ def build_gateway_locust_http_client(environment: Environment) -> Client:
     logging.getLogger('httpx').setLevel(logging.WARNING)
 
     return Client(
-        base_url='http://localhost:8003',
-        timeout=100,
+        base_url=settings.gateway_http_client.client_url,
+        timeout=settings.gateway_http_client.timeout,
         event_hooks={
             'request': [locust_request_event_hook],
             'response': [locust_response_event_hook(environment)]

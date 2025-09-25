@@ -73,7 +73,9 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          path: ./reports/
+          name: report
+          path: reports/
+
 
   publish-report:
     needs: run-tests
@@ -84,7 +86,7 @@ jobs:
       - name: Download Locust test report
         uses: actions/download-artifact@v5
         with:
-          name: reports
+          name: report
 
       - name: Deploy HTML report to GitHub Pages
         if: always()

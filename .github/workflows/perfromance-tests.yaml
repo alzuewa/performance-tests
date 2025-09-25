@@ -64,6 +64,28 @@ jobs:
       - name: Run load tests and generate HTML report
         run: locust --config=${{ github.event.inputs.SCENARIO }} --html=./reports/${{ github.run_id }}/index.html
 
+      - name: Stop test services
+        if: always()
+        run: docker compose -f docker-compose.ci.yaml down -v
+        working-directory: performance-qa-engineer-course
+
+      - name: Upload Locust test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          path: ./reports/
+
+  publish-report:
+    needs: run-tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Download Locust test report
+        uses: actions/download-artifact@v5
+        with:
+          name: reports
+
       - name: Deploy HTML report to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v4
@@ -72,11 +94,3 @@ jobs:
           keep_files: true  # Save previous reports
           publish_dir: reports  # Publish `reports` directory
           publish_branch: gh-pages  # To gh-pages branch
-
-      - name: Stop test services
-        if: always()
-        run: docker compose -f docker-compose.ci.yaml down -v
-        working-directory: performance-qa-engineer-course
-
-
-

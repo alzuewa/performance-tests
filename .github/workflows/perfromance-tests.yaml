@@ -34,6 +34,7 @@ jobs:
     timeout-minutes: 30
 
     steps:
+
       - name: Checkout repository
         uses: actions/checkout@v5
 
@@ -83,6 +84,7 @@ jobs:
     timeout-minutes: 10
 
     steps:
+
       - name: Download Locust test report
         uses: actions/download-artifact@v5
         with:

@@ -87,6 +87,7 @@ jobs:
         uses: actions/download-artifact@v5
         with:
           name: reports
+          path: ./reports
 
       - name: Deploy HTML report to GitHub Pages
         if: always()

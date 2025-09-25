@@ -90,7 +90,8 @@ jobs:
         if: always()
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}  # Authorization for push в gh-pages
+          # https://docs.github.com/en/actions/tutorials/authenticate-with-github_token#modifying-the-permissions-for-the-github_token
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           keep_files: true  # Save previous reports
           publish_dir: reports  # Publish `reports` directory
           publish_branch: gh-pages  # To gh-pages branch

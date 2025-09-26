@@ -1,0 +1,59 @@
+version: "3.9"
+
+services:
+  # ------------------------------
+  # PostgreSQL — to store metrics
+  # ------------------------------
+  db:
+    image: postgres:16-alpine  # Light PostgreSQL image
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: load_testing_metrics_db
+      POSTGRES_USER: load_testing_metrics_user
+      POSTGRES_PASSWORD: load_testing_metrics_password
+    healthcheck:
+      # Check DB readiness
+      test: [ "CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}" ]
+      retries: 5
+      timeout: 3s
+      interval: 5s
+    container_name: db
+  # ------------------------------
+  # Backend API (load-testing-hub-api)
+  # ------------------------------
+  api:
+    image: nikitafilonov/load-testing-hub-api:latest  # Backend image
+    ports: [ "13000:13000" ]
+    env_file: [ .env.load-testing-hub ]
+    depends_on:
+      migrator: # API starts only after migrations have successfully passed
+        condition: service_completed_successfully
+    container_name: api
+
+  # ------------------------------
+  # Frontend Panel (load-testing-hub-panel)
+  # ------------------------------
+  panel:
+    image: nikitafilonov/load-testing-hub-panel:latest
+    ports: [ "13100:13100" ]
+    env_file: [ .env.load-testing-hub ]
+    container_name: panel
+
+  # ------------------------------
+  # Migrator — executes DB migrations
+  # ------------------------------
+  migrator:
+    image: nikitafilonov/load-testing-hub-api:latest
+    command: alembic upgrade head
+    env_file: [ .env.load-testing-hub ]
+    depends_on:
+      db:
+        condition: service_healthy
+    container_name: migrator
+
+# --------------------------------
+# Volume to store PostgreSQL data
+# --------------------------------
+volumes:
+  postgres_data:

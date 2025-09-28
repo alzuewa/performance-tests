@@ -151,4 +151,4 @@ the [course infrastructure repository](https://github.com/Nikita-Filonov/perform
 > Tests may be executed with GitHub Actions integration. Run the scenarios in headless mode and publish reports
 to GitHub Pages automatically.
 > 
-> The configuration can be found here: [.github/workflows/performance-tests.yml](./.github/workflows/performance-tests.yml).
+> The configuration can be found here: [.github/workflows/performance-tests.yml](./.github/workflows/performance-tests.yaml).

@@ -36,10 +36,10 @@ jobs:
     steps:
 
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
       - name: Setup Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version: '3.12'
 
@@ -72,7 +72,7 @@ jobs:
 
       - name: Upload Locust test report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: reports
           path: reports/
@@ -86,7 +86,7 @@ jobs:
     steps:
 
       - name: Download Locust test report
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v8
         with:
           name: reports
           path: ./reports

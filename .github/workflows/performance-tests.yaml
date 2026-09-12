@@ -1,6 +1,9 @@
 name: Performance tests
 
 on:
+  schedule:
+    - cron: '30 08 * * 6'
+    
   workflow_dispatch:
     inputs:
       SCENARIO:
@@ -33,6 +36,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
+    env:
+      SCENARIO: ${{ inputs.SCENARIO || './scenarios/grpc/gateway/new_user_get_accounts/v1.0.conf'}}
+
     steps:
 
       - name: Checkout repository
@@ -63,7 +69,7 @@ jobs:
         run: mkdir -p ./reports/${{ github.run_id }}
 
       - name: Run load tests and generate HTML report
-        run: locust --config=${{ github.event.inputs.SCENARIO }} --html=./reports/${{ github.run_id }}/index.html
+        run: locust --config=$SCENARIO --html=./reports/${{ github.run_id }}/index.html
 
       - name: Stop test services
         if: always()
